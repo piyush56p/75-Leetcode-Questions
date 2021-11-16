@@ -1,0 +1,101 @@
+ #include<iostream>
+ using namespace std;
+ class node{
+ 	public:
+ 		int data;
+ 		node *next;
+ 		node(int value){
+ 			data = value;
+ 			next = NULL;
+ 			
+		 }
+ 		
+ };
+class queue{
+	node *front;
+	node *tail;
+
+public:
+	
+	void enqueue(int value){
+		node *new_node = new node(value);
+		if(front == NULL){
+			front = new_node;
+			tail = new_node;
+		}
+		while(tail->next != NULL){
+			tail = tail->next;
+		}
+		tail->next = new_node;
+		tail = new_node;
+	}
+	void dequeue(){
+		if(front == NULL){
+			cout<<"Underflow"<<endl;
+		}
+		node *todel = front;
+		front  = front->next;
+		delete(todel);
+	}
+	void  peek(){
+		if(front == NULL){
+			cout<<"queue is empty";
+		}
+		else{
+			cout<<front->data<<endl;
+		}
+	}
+	bool isEmpty(){
+		if(front == NULL){
+			return true;
+		}
+		return false;
+	}
+	void display(){
+		if(front == NULL){
+			cout<<"queue is empty";
+		}
+		node *disp = front;
+		while(disp != NULL){
+			cout<<disp->data<<endl;
+			disp = disp->next;
+		}
+	}
+};
+int main(){
+	queue q;
+	int no, ch;
+	do{
+		cout<<"MENU DRIVEN PROGRAM"<<endl;
+		cout<<"1: Enqueue"<<endl;
+		cout<<"2: Dequeue"<<endl;
+		cout<<"3: peek"<<endl;
+		cout<<"4:Display"<<endl;
+		cout<<"5: Is Empty"<<endl;
+		cout<<"6: Exit"<<endl;
+		cin>>ch;
+		switch(ch){
+			case 1:
+				cin>>no;
+				q.enqueue(no);
+				break;
+			case 2:
+				q.dequeue();
+				break;
+			case 3:
+				q.peek();
+				break;
+			case 4:
+				q.display();
+				break;
+			case 5:
+				q.isEmpty();
+				break;
+			case 6:
+				break;
+			default:
+				cout<<"wrong input";
+				break;
+		}
+	}while(ch!=6);
+}
