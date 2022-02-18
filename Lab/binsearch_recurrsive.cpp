@@ -12,10 +12,10 @@ int binsearch(int arr[],int high,int low,int element){
 		}
 		if(arr[middle]<element){
 			
-			return binsearch(arr,high,mid+1,element);
+			return binsearch(arr,high,middle+1,element);
 		}
 		else{
-			return binsearch(arr,mid-1,low,element);
+			return binsearch(arr,middle-1,low,element);
 		}
 
 		
